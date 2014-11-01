@@ -14,14 +14,14 @@ airPressureInput(Pressure):-
 windspeedInput(Speed):-
     write('Wind Speed (mph): '), read(Speed).
     
-lapserateInput(MoistAirTemperature):-
-    write('Moist Ait Temperature rate of cooling (°c/km):'), read(MoistAirTemperatre).
+lapserateInput(MoistAirTemperaturerate):-
+    write('Moist Ait Temperature rate of cooling (°c/km):'), read(MoistAirTemperaturerate).
     
     
-collectReading(Humidity, SeaSurfaceTemperature, AirPressure, WindSpeed, MoistAirTemperature):-
+collectReading(Humidity, SeaSurfaceTemperature, AirPressure, WindSpeed, MoistAirTemperaturerate):-
     write('New Reading...'), nl,
     humidityInput(Humidity), 
     sstInput(SeaSurfaceTemperature), 
     airPressureInput(AirPressure),
     windspeedInput(WindSpeed).
-    lapserateInput(MoistAirTemperature).
+    lapserateInput(MoistAirTemperaturerate).

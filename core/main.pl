@@ -17,8 +17,8 @@ doOption(Choice):-
     integer(Choice),
     (
         Choice == 1 -> (
-                collectReading(Hum, SST, AP, WS),
-                reading(Hum, SST, AP, WS, Reading),
+                collectReading(Hum, SST, AP, WS, MT),
+                reading(Hum, SST, AP, WS, MT, Reading),
                 saveReading(Reading)
         );
         Choice == 2 -> (

@@ -8,7 +8,7 @@ memory_file('.memory.vrij').
 
 
 % Blueprint for a single reading
-reading(humidity, seaSurfaceTemperature, airPressure, windSpeed,moistAirTemperatre).
+reading(humidity, seaSurfaceTemperature, airPressure, windSpeed, moistAirTemperature).
 % Get a reading 
 % Combine each factor to get a complete reading (a list)
 reading(Humidity, SeaSurfaceTemperature, AirPressure, WindSpeed,MoistAirTemperature

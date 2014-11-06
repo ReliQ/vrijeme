@@ -30,4 +30,3 @@ windSpeed(Speed, Status):-
                  
 
 
-wind_speed(45, ' i ').

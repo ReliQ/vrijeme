@@ -28,6 +28,3 @@ windSpeed(Speed, Status):-
                  (Speed > 35)-> Status is 2;
                  Status is 0.
                  
-
-
-wind_speed(45, ' i ').

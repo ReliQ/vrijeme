@@ -14,4 +14,3 @@ airPressure_input(Pressure,Status):-
                 write('3.Pressure:'), read(Pressure).
                 
 windspeed_input(Speed,Status):-
-                               write('4.Wind Speed (m/s):'), read(Speed).

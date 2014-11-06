@@ -73,7 +73,7 @@ sst_threat(Temp, Threat):- sst_threat(Temp, Threat, c).
 
 
 % atp_judgement/2 - Atmospheric Pressure Judgement
-% Pressure in millibar (mb) or hectoPascal (hp) 
+% Pressure in millibar (mb) or hectoPascal (hPa) 
 atp_judgement(Pressure, Judgement):-
 	Pressure < 1000 
 		-> Judgement = 'low';

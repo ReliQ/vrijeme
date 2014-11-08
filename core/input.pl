@@ -9,7 +9,7 @@ sstInput(Temperature):-
     write('Sea Temperature (°c): '), read(Temperature).
                 
 airPressureInput(Pressure):-
-        write('Pressure (mb): '), read(Pressure).
+    write('Pressure (mb): '), read(Pressure).
                 
 windSpeedInput(Speed):-
     write('Wind Speed (mph): '), read(Speed).

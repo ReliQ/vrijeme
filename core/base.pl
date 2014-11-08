@@ -24,28 +24,26 @@ airPressure(Pressure, Status):-
         (Pressure > 1014)-> Status is 2;
         Status is 0.
 
-% checks wind speed, average is 15. Measured in km/h. Wind speed average set higher to represent storms & account for windy days
+% checks wind speed, average is 15. Measured in km/h. 
+% Wind speed average set higher to represent storms & account for windy days
 windSpeed(Speed, Status):-
         (Speed < 15)-> Status is 1;
         (Speed > 35)-> Status is 2;
         Status is 0.
 
 
-/* checks the difference in dry airtemperatures and moist air temperatures to be greater than 20 degrees to determine
-if moist air convection is present which leads to instability */
-moistairConvection(Lapserate,Status):-
+
+% Checks the difference in dry airtemperatures and moist air temperatures to be greater than 20 degrees to determine
+% if moist air convection is present which leads to instability
+moistAirConvection(Lapserate,Status):-
         (Lapserate>20)-> Status = 'unstable';
          Status = 'stable'.
 
-/* instability means that condensation will occur and cumulonimbus clouds are formed. A tropical disturbance is born,
- the first stage of a developing hurricane. */
-thunderstorm(Condensation,Status):- (Condensation = 1)-> Status = 'Thunderstorm Occuring';
-                                 (Condensation = 0)-> Status = 'Thunderstorm not Occring'.
+% Instability means that condensation will occur and cumulonimbus clouds are formed. A tropical disturbance is born,
+% the first stage of a developing hurricane.
+thunderstorm(Condensation,Status):- (Condensation = 1)-> Status is 1;
+                                 (Condensation = 0)-> Status is 0.
                                  
-
-
-         
-
 
 
 % wind_cat/3 - wind prediction

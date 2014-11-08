@@ -41,8 +41,9 @@ moistAirConvection(Lapserate,Status):-
 
 % Instability means that condensation will occur and cumulonimbus clouds are formed. A tropical disturbance is born,
 % the first stage of a developing hurricane.
-thunderstorm(Condensation,Status):- (Condensation = 1)-> Status is 1;
-                                 (Condensation = 0)-> Status is 0.
+thunderstorm(Condensation,Status):- 
+    (Condensation = 1)-> Status is 1;
+    (Condensation = 0)-> Status is 0.
                                  
 
 

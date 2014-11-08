@@ -1,10 +1,11 @@
 % Author:
 % Date: 07/11/2014
 
-:- [base].
+:- ensure_loaded([base, file]).
 
 prediction:-
-            open('.memory.vrij', read, Source),
+            memory_file(X),
+            open(X, read, Source),
             read(Source, [H1,T1,P1,S1,M1]),          %reading values from file, H=humidity T=sea_temperature P=pressure S=wind_speed M=moist_airtemperature
             read(Source, [H2,T2,P2,S2,M2]),
             read(Source, [H3,T3,P3,S3,M3]),

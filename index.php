@@ -5,16 +5,16 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
-		<header>
-			
-		</header>
-		<main>
-			<pre>
-			<?php run(); ?>
-			</pre>
-		</main>
-		<footer>
-			
-		</footer>
+		<section id="window">
+			<header>
+				
+			</header>
+			<main>
+				<?= run('reading(A, B, C, D)'); ?>
+			</main>
+			<footer>
+				
+			</footer>
+		</section>
 	</body>	
 </html>

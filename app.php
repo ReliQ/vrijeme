@@ -1,8 +1,12 @@
 <?php
+/**
+ *	Vrijeme
+ */
 
 
-function run() 
+function run($cmd) 
 {
-	$cmd = "nice -n15 swipl -f core/main.pl -g run,halt";
-	echo exec( $cmd );
+	$cmd = "nice -n15 swipl -f core/main.pl -g ".$cmd.",halt";
+	return $cmd;
+	// return exec($cmd);
 }

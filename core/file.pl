@@ -11,8 +11,8 @@ memory_file('.memory.vrij').
 reading(humidity, seaSurfaceTemperature, airPressure, windSpeed, moistAirTemperature).
 % Get a reading 
 % Combine each factor to get a complete reading (a list)
-reading(Humidity, SeaSurfaceTemperature, AirPressure, WindSpeed,MoistAirTemperature
-        [Humidity, SeaSurfaceTemperature, AirPressure, WindSpeed,MoistAirTemperature]). %- list of factors, ie. a reading
+reading(Humidity, SeaSurfaceTemperature, AirPressure, WindSpeed, MoistAirTemperature,
+        [Humidity, SeaSurfaceTemperature, AirPressure, WindSpeed, MoistAirTemperature]). %- list of factors, ie. a reading
 
 
 % saveReading/2 and saveReading/3

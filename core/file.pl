@@ -17,12 +17,12 @@ reading(Humidity, SeaSurfaceTemperature, AirPressure, WindSpeed, MoistAirTempera
 
 % saveReading/2 and saveReading/3
 % Write a reading to system memory file.
-saveReading(R):- saveReading(R, _).                             %- bypass need to specify verbose flag
+saveReading(R):- saveReading(R, _).                    	%- bypass need to specify verbose flag
 saveReading(Reading, Verbose):-
-    memory_file(File),                                     	%- get specified memory file name
-    open(File, append, Stream),                             %- open memory file
-    write(Stream, Reading), write(Stream,'.'),      		%- write reading as a record to file
-    nl(Stream),     close(Stream),                          %- close memory file
+    memory_file(File),                                	%- get specified memory file name
+    open(File, append, Stream),                       	%- open memory file
+    write(Stream, Reading), write(Stream,'.'),      	%- write reading as a record to file
+    nl(Stream),     close(Stream),                     	%- close memory file
     %- If verbose is specified write to console. [Debugging purpose]
     ( Verbose == v -> ( 
             nl, write('Saving reading '), write(Reading), 
@@ -32,7 +32,7 @@ saveReading(Reading, Verbose):-
 % loadReadings/1
 % Get readings from memory file.
 loadReadings(Readings):-
-        memory_file(File),                              %- get specified memory file name
+    memory_file(File),                              %- get specified memory file name
     open(File, read, Stream),           %- open memory file
     read_file(Stream, Readings),        %- read memory file line by line
     close(Stream),                                      %- close memory file
@@ -43,7 +43,7 @@ loadReadings(Readings):-
 % Get latest reading
 lastReading(Reading):-
     loadReadings(Readings),                 %- load readings
-    last(Readings, Reading).                %- get last
+    last(Readings, Reading).                %- get last   
 
 
 % read_file/2
@@ -53,7 +53,7 @@ read_file(Stream,[]) :-
     at_end_of_stream(Stream).           %- do nothing at EOF
 read_file(Stream,[X|L]) :-                              
     \+ at_end_of_stream(Stream),        %- not EOF
-    read(Stream,X),                                     %- read line
+    read(Stream,X),                    	%- read line
     read_file(Stream, L).                       
 
 
@@ -65,3 +65,12 @@ dump_all(ToFile):-
     listing,           % list all clauses in memory
     told,              % close ToFile
     tell(Old).         % resume this output
+
+
+% print first N items in list
+% ! Utility predicate.
+print_n(0, _) :- !.
+print_n(_, []).
+print_n(N, [H|T]) :- 
+	write(H), nl, 
+	N1 is N - 1, printN(N1, T). 

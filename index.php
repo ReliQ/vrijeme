@@ -10,9 +10,7 @@
 				
 			</header>
 			<main>
-				<pre>
 				<?= run('reading(A, B, C, D)'); ?>
-				</pre>
 			</main>
 			<footer>
 				

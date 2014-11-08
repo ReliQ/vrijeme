@@ -19,14 +19,14 @@ reading(Humidity, SeaSurfaceTemperature, AirPressure, WindSpeed, MoistAirTempera
 % Write a reading to system memory file.
 saveReading(R):- saveReading(R, _).                             %- bypass need to specify verbose flag
 saveReading(Reading, Verbose):-
-        memory_file(File),                                                      %- get specified memory file name
-        open(File, append, Stream),                                     %- open memory file
-        write(Stream, Reading), write(Stream,'.'),      %- write reading as a record to file
-        nl(Stream),     close(Stream),                                  %- close memory file
-        %- If verbose is specified write to console. [Debugging purpose]
-        ( Verbose == v -> ( 
-                nl, write('Saving reading '), write(Reading), 
-                write(' to "'), write(File), write('"...') ); write('') ). 
+    memory_file(File),                                     	%- get specified memory file name
+    open(File, append, Stream),                             %- open memory file
+    write(Stream, Reading), write(Stream,'.'),      		%- write reading as a record to file
+    nl(Stream),     close(Stream),                          %- close memory file
+    %- If verbose is specified write to console. [Debugging purpose]
+    ( Verbose == v -> ( 
+            nl, write('Saving reading '), write(Reading), 
+            write(' to "'), write(File), write('"...') ); write('') ). 
 
 
 % loadReadings/1
@@ -42,8 +42,8 @@ loadReadings(Readings):-
 % lastReading/1
 % Get latest reading
 lastReading(Reading):-
-        loadReadings(Readings),                 %- load readings
-        last(Readings, Reading).                %- get last
+    loadReadings(Readings),                 %- load readings
+    last(Readings, Reading).                %- get last
 
 
 % read_file/2
@@ -60,8 +60,8 @@ read_file(Stream,[X|L]) :-
 % Save everything in memory to file.
 % ! Utility predicate.
 dump_all(ToFile):-      
-        telling(Old),      % current write output
-        tell(ToFile),      % open this file
-        listing,           % list all clauses in memory
-        told,              % close ToFile
-        tell(Old).         % resume this output
+    telling(Old),      % current write output
+    tell(ToFile),      % open this file
+    listing,           % list all clauses in memory
+    told,              % close ToFile
+    tell(Old).         % resume this output

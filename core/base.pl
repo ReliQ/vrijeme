@@ -6,6 +6,7 @@ system('Vrijeme').     %System info
 welcomeMessage('Welcome to Vrijeme.').
 
 
+
 %humidity, averages from 4 cities at different times of day. humidity is a percentage
 humidity(Hum,Status):-
     (Hum < 0.79)-> Status is 1;

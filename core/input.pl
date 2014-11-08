@@ -1,17 +1,22 @@
 %% Vrijeme
 %% input.pl
 
-humidityInput(Humidity, Status):-
-    write('Humidity:'), read(Humidity), write('%').
+humidityInput(Humidity):-
+    write('Humidity (%): '), read(Humidity), 
+    Humidity < 1. %- Ensure Humidity is less than 1
                 
-sstInput(Temperature, Status):-
-    nl, write('Sea Temperature:'), read(Temperature), write('C').
+sstInput(Temperature):-
+    write('Sea Temperature (°c): '), read(Temperature).
                 
-airPressureInput(Pressure, Status):-
-	nl, write('Pressure:'), read(Pressure).
+airPressureInput(Pressure):-
+	write('Pressure (mb): '), read(Pressure).
                 
-windspeedInput(Speed, Status):-
-    nl, write('Wind Speed (mph):'), read(Speed).
+windspeedInput(Speed):-
+    write('Wind Speed (mph): '), read(Speed).
     
-getInput:-
-    write('get inputs').
+collectReading(Humidity, SeaSurfaceTemperature, AirPressure, WindSpeed):-
+    write('New Reading...'), nl,
+    humidityInput(Humidity), 
+    sstInput(SeaSurfaceTemperature), 
+    airPressureInput(AirPressure),
+    windspeedInput(WindSpeed).

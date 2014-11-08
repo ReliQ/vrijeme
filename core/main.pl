@@ -6,14 +6,33 @@
 
 run:-
     system(X),
-    string_concat('Welcome to ', X, WelcomeMessage),
+    string_concat('Welcome to ', X, WelcomeMessage), nl,
     write(WelcomeMessage), nl, write('Select Option:'), nl,
     write('1. Information Input'), nl, write('2. View History'), nl,
-    write('3. Get latest Prediction'), nl,
+    write('3. Get latest Prediction'), nl, write('4. Exit'), nl,
     write('-| Choice: '), read(Choice), doOption(Choice).
       
       
 doOption(Choice):-
     integer(Choice),
-    string_concat('time to do...', Choice, X), nl,
-    (Choice == 1 -> getInput; write(X)).
+    (
+    	Choice == 1 -> (
+    		collectReading(Hum, SST, AP, WS), 
+    		reading(Hum, SST, AP, WS, Reading),
+    		saveReading(Reading)
+    	);
+    	Choice == 2 -> (
+    		loadReadings(Readings), 
+    		write('History: '),
+    		write(Readings)
+    	);
+    	Choice == 3 -> ( 
+    		write('Prediction'), nl
+    	);
+    	Choice == 4 -> ( 
+    		write('Goodbye...'),
+    		halt 
+    	); run 
+    ).
+
+

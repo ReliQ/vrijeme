@@ -2,7 +2,7 @@
 %% base.pl
 %- Authors: Ashani, Patrick
 
-system('Vrijeme - v0.0.1').     %System info
+system('Vrijeme').     %System info
 
 
 

@@ -5,8 +5,7 @@
 
 
 run:-
-    system(X),
-    string_concat('Welcome to ', X, WelcomeMessage), nl,
+    nl, welcomeMessage(WelcomeMessage),
     write(WelcomeMessage), nl, write('Select Option:'), nl,
     write('1. Information Input'), nl, write('2. View current data'), nl,
     write('3. Get latest Prediction'), nl, write('4. Exit'), nl,
@@ -27,7 +26,7 @@ doOption(Choice):-
                 write(Readings)
         );
         Choice == 3 -> (
-                write('Prediction'), nl
+                prediction
         );
         Choice == 4 -> (
                 write('Goodbye...'), nl, halt

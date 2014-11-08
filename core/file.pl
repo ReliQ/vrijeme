@@ -32,27 +32,34 @@ saveReading(Reading, Verbose):-
 % loadReadings/1
 % Get readings from memory file.
 loadReadings(Readings):-
-	memory_file(File),
-    open(File, read, Stream),
-    read_file(Stream, Readings),
-    close(Stream).
+	memory_file(File),				%- get specified memory file name
+    open(File, read, Stream),		%- open memory file
+    read_file(Stream, Readings),	%- read memory file line by line
+    close(Stream),					%- close memory file
+    assert( readings(Readings) ). 	%- Save a volatile copy, for live use
 
+
+% lastReading/1
+% Get latest reading
+lastReading(Reading):-
+	loadReadings(Readings),
+	last(Readings, Reading).
 
 
 % read_file/2
 % Read a file to the end
 % ! Utility predicate.
 read_file(Stream,[]) :-
-    at_end_of_stream(Stream).
-read_file(Stream,[X|L]) :-
-    \+ at_end_of_stream(Stream),
-    read(Stream,X),
-    read_file(Stream, L).
+    at_end_of_stream(Stream).		%- do nothing at EOF
+read_file(Stream,[X|L]) :-				
+    \+ at_end_of_stream(Stream),	%- not EOF
+    read(Stream,X),					%- read line
+    read_file(Stream, L).			
 
 
 % Save everything in memory to file.
 % ! Utility predicate.
-save_all_memory(ToFile):-      
+dump_all(ToFile):-      
 	telling(Old),      % current write output
 	tell(ToFile),      % open this file
 	listing,           % list all clauses in memory

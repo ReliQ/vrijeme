@@ -30,9 +30,6 @@ doOption(Choice):-
     		write('Prediction'), nl
     	);
     	Choice == 4 -> ( 
-    		write('Goodbye...'),
-    		halt 
+    		write('Goodbye...'), nl, halt 
     	); run 
     ).
-
-

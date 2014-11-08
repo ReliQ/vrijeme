@@ -1,7 +1,7 @@
 %%      Vrijeme - v0.0.1
 %%      main.pl 
 
-:- [base, file, input]. 
+:- [base, file, input, predictions].
 
 
 run:-
@@ -16,23 +16,23 @@ run:-
 doOption(Choice):-
     integer(Choice),
     (
-    	Choice == 1 -> (
-    		collectReading(Hum, SST, AP, WS), 
-    		reading(Hum, SST, AP, WS, Reading),
-    		saveReading(Reading)
-    	);
-    	Choice == 2 -> (
-    		loadReadings(Readings), 
-    		write('History: '),
-    		write(Readings)
-    	);
-    	Choice == 3 -> ( 
-    		write('Prediction'), nl
-    	);
-    	Choice == 4 -> ( 
-    		write('Goodbye...'),
-    		halt 
-    	); run 
+        Choice == 1 -> (
+                collectReading(Hum, SST, AP, WS), 
+                reading(Hum, SST, AP, WS, Reading),
+                saveReading(Reading)
+        );
+        Choice == 2 -> (
+                loadReadings(Readings), 
+                write('History: '),
+                write(Readings)
+        );
+        Choice == 3 -> ( 
+                write('Prediction'), nl
+        );
+        Choice == 4 -> ( 
+                write('Goodbye...'),
+                halt 
+        ); run 
     ).
 
 

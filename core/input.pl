@@ -1,4 +1,4 @@
-%% Vrijeme
+﻿%% Vrijeme
 %% input.pl
 
 humidityInput(Humidity):-
@@ -9,14 +9,19 @@ sstInput(Temperature):-
     write('Sea Temperature (°c): '), read(Temperature).
                 
 airPressureInput(Pressure):-
-	write('Pressure (mb): '), read(Pressure).
+        write('Pressure (mb): '), read(Pressure).
                 
 windspeedInput(Speed):-
     write('Wind Speed (mph): '), read(Speed).
     
-collectReading(Humidity, SeaSurfaceTemperature, AirPressure, WindSpeed):-
+lapserateInput(MoistAirTemperature):-
+    write('Moist Ait Temperature rate of cooling (°c/km):'), read(MoistAirTemperatre).
+    
+    
+collectReading(Humidity, SeaSurfaceTemperature, AirPressure, WindSpeed, MoistAirTemperature):-
     write('New Reading...'), nl,
     humidityInput(Humidity), 
     sstInput(SeaSurfaceTemperature), 
     airPressureInput(AirPressure),
     windspeedInput(WindSpeed).
+    lapserateInput(MoistAirTemperature).

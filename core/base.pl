@@ -36,14 +36,14 @@ windSpeed(Speed, Status):-
 % Checks the difference in dry airtemperatures and moist air temperatures to be greater than 20 degrees to determine
 % if moist air convection is present which leads to instability
 moistAirConvection(Lapserate,Status):-
-    (Lapserate>20)-> Status = 'unstable';
-     Status = 'stable'.
+    (Lapserate>20)-> InstabilityStatus is 1;
+     InstabilityStatus is 0.
 
 % Instability means that condensation will occur and cumulonimbus clouds are formed. A tropical disturbance is born,
 % the first stage of a developing hurricane.
 thunderstorm(Condensation,Status):- 
-    (Condensation = 1)-> Status is 1;
-    (Condensation = 0)-> Status is 0.
+    (Condensation = 1)-> ThunderstormStatus is 1;
+    (Condensation = 0)-> ThunderstormStatus is 0.
                                  
 
 

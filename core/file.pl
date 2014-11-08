@@ -42,8 +42,8 @@ loadReadings(Readings):-
 % lastReading/1
 % Get latest reading
 lastReading(Reading):-
-	loadReadings(Readings),
-	last(Readings, Reading).
+	loadReadings(Readings),			%- load readings
+	last(Readings, Reading).		%- get last
 
 
 % read_file/2

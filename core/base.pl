@@ -3,7 +3,7 @@
 %- Authors: Ashani, Patrick
 
 system('Vrijeme').     %System info
-welcomeMessage('Welcome to Vrijeme.').
+welcomeMessage('Welcome to Vrijeme. Weather prediction in Prolog!').
 
 
 

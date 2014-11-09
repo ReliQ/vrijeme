@@ -12,7 +12,7 @@ prediction:-
             %close(Source),
             %getLines([[H1,T1,P1,S1,M1],[H2,T2,P2,S2,M2],[H3,T3,P3,S3,M3]]),
             getLines(Lines),
-            revl([D1,D2,D3],Lines),
+            revl([D1,D2,D3|T],Lines),
             conditions(D1,D2,D3,Level),
             %conditions([H1,T1,P1,S1,M1], [H2,T2,P2,S2,M2], [H3,T3,P3,S3,M3], Level),
             write('conditions: '), write(Level), nl,
@@ -33,7 +33,7 @@ conditions([H1,T1,P1,S1,M1], [H2,T2,P2,S2,M2], [H3,T3,P3,S3,M3], Level):-     %e
                           %( (TempChoange>0) -> Level is 2 ; true),
                          %( (MoistTempChange>0) -> Level is 2 ; true),
                           ( (SpeedChange<0)->(HumidityChange<0)->(TempChange<0)-> Level is 1; true),%check for good weather
-                          ( (SpeedChange =:=0) -> (HumidityChange =:=0)->(TempChange=:=0)->(MoistTempChange=:=0)-> Level is 0; Level is 3),
+                          ( (SpeedChange =:=0) -> (HumidityChange =:=0)->(TempChange=:=0)->(MoistTempChange=:=0)-> Level is 0; true),
                           ( (HumidityChange>0) ; (SpeedChange>0) ; (TempChange>0) ; (MoistTempChange>0) -> Level is 2;true).  %check for normal weather
 getLines(L):-
    memory_file(X),

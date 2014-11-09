@@ -1,6 +1,7 @@
 % Author:
 % Date: 09/11/2014
 
+%provides warnings based on the weatherstatus
 warning(WeatherStatus):-
      WeatherStatus== -1
                      ->write('Weather is normal, continue with normal activities'),nl;

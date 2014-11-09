@@ -16,10 +16,10 @@ prediction:-
             conditions(D1,D2,D3,Level),
             %conditions([H1,T1,P1,S1,M1], [H2,T2,P2,S2,M2], [H3,T3,P3,S3,M3], Level),
             write('conditions: '), write(Level), nl,
-            wind_cat(S1,WeatherStatus,mph),                  %testing for storms based on the wind speed
-            write('weather status: '), write(WeatherStatus),nl, %stormExists 1= there is a storm 0 = there is no storm
-            (WeatherStatus =:= -1)->StormExists is 0; StormExists is 1,
-             write('Storm exists?: '), write(StormExists).
+            wind_cat(D1,WeatherStatus),                  %testing for storms based on the wind speed
+            write('weather status: '), write(WeatherStatus),nl. %stormExists 1= there is a storm 0 = there is no storm
+            %(WeatherStatus =:= -1)->StormExists is 0; StormExists is 1,
+             %write('Storm exists?: '), write(StormExists).
              
 conditions([H1,T1,P1,S1,M1], [H2,T2,P2,S2,M2], [H3,T3,P3,S3,M3], Level):-     %evaluates weather trends and determines weather conditions are decline or improving
                           HumidityChange is (H1-H2)+(H2-H3),         % 0 = stable weather(no changes)
@@ -27,14 +27,9 @@ conditions([H1,T1,P1,S1,M1], [H2,T2,P2,S2,M2], [H3,T3,P3,S3,M3], Level):-     %e
                           _PressureChange is (P1-P2)+(P2-P3),         % 2 = deteriorating weather (raising temp, speed, etc)
                           SpeedChange is (S1-S2)+(S2-S3),
                           MoistTempChange is (M1-M2)+(M2-M3),
-                        %  ( (SpeedChange>0) ; (HumidityChange>0) ; (TempChange>0) )->Level is 2;true
-                         % ( (SpeedChange>0) -> Level is 2 ; true), %check for bad weather
-                         % ( (HumidityChange>0) -> Level is 2 ; true),
-                          %( (TempChoange>0) -> Level is 2 ; true),
-                         %( (MoistTempChange>0) -> Level is 2 ; true),
-                          ( (SpeedChange<0)->(HumidityChange<0)->(TempChange<0)-> Level is 1; true),%check for good weather
-                          ( (SpeedChange =:=0) -> (HumidityChange =:=0)->(TempChange=:=0)->(MoistTempChange=:=0)-> Level is 0; true),
-                          ( (HumidityChange>0) ; (SpeedChange>0) ; (TempChange>0) ; (MoistTempChange>0) -> Level is 2;true).  %check for normal weather
+                          ( (HumidityChange>0) ; (SpeedChange>0) ; (TempChange>0) ; (MoistTempChange>0) -> Level is 2;true),
+                          ( (SpeedChange<0)->(HumidityChange<0)->(TempChange<0)->(MoistTempChange<0)-> Level is 1; true),%check for good weather
+                          ( (SpeedChange=:=0),(HumidityChange =:=0),(TempChange=:=0),(MoistTempChange=:=0)-> Level is 0; Level is 3).  %check for normal weather
 getLines(L):-
    memory_file(X),
   setup_call_cleanup(

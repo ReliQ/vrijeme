@@ -15,11 +15,13 @@ reading(Humidity, SeaSurfaceTemperature, AirPressure, WindSpeed, MoistAirTempera
         [Humidity, SeaSurfaceTemperature, AirPressure, WindSpeed, MoistAirTemperature]). %- list of factors, ie. a reading
 
 
-% saveReading/2 and saveReading/3
+% saveReading/1, saveReading/2 and saveReading/3
 % Write a reading to system memory file.
-saveReading(R):- saveReading(R, _).                    	%- bypass need to specify verbose flag
-saveReading(Reading, Verbose):-
-    memory_file(File),                                	%- get specified memory file name
+saveReading(R):- 
+    memory_file(File),              %- get default memory file name
+    saveReading(R, File).           %- bypass need to specify verbose flag
+saveReading(R, File):- saveReading(R, File, _).
+saveReading(Reading, File, Verbose):-
     open(File, append, Stream),                       	%- open memory file
     write(Stream, Reading), write(Stream,'.'),      	%- write reading as a record to file
     nl(Stream),     close(Stream),                     	%- close memory file

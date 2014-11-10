@@ -7,7 +7,7 @@
 
 
 var Vrij = {};
-Vrij.latency = 10; // seconds to wait befor update
+Vrij.latency = 20; // seconds to wait befor update
 Vrij.updateTime = Vrij.latency * 1000;
 Vrij.init = function() {
     var update = setInterval(function() {
@@ -31,7 +31,7 @@ Vrij.getCurrent = function() {
 };
 Vrij.getPrediction = function() {
     $.get("./?vriq=prediction", function(data) {
-        var canvas = $('#main .asplit .p-s p');
+    	var canvas = $('#main .asplit .p-s p');
         canvas.html(data);
     });
 };
@@ -40,15 +40,16 @@ Vrij.watch = function() {
     form.submit(function(ev) {
         //ev.preventDefault();
         var data = form.serializeObject();
-        alert(JSON.stringify(data));
-        $.post("./", function(data) {
-            
-        });
+        if (confirm("Are you sure you want to add: " +JSON.stringify(data)+ "?"))
+        {
+            $.post("./", function(data) {});
+        }
     });
 };
 Vrij.update = function() {
     console.log('Vrij is updating...');
     Vrij.getCurrent();
+    Vrij.getPrediction();
     console.log('...update complete.');
 }
 

@@ -1,17 +1,18 @@
 <?php
 /**
  *	Vrijeme - Weather Prediction in Prolog!
- *	The Application
- *	@author Patrick Reid, Brian Findlay, Ashani Kentish, Rajiv Manderson
+ *	Application Interface
+ *	@author Patrick Reid
  */
-# error_reporting(E_ERROR);
+error_reporting(E_ERROR);
+
 
 /**
  *	Application class.
  */
 class Vrijeme {
 
-	private $response;
+	public $response;
 
 	# Constructor
 	function __construct() {
@@ -20,6 +21,8 @@ class Vrijeme {
 
 	private function init()
 	{
+		$this->response = new VrijResponse();
+		
 		if (isset($_GET['vriq']))
 		{
 			$do = $_GET['vriq'];
@@ -36,17 +39,8 @@ class Vrijeme {
 			}
 		} elseif (isset($_POST['Humidity'])) 
 		{
-			// $reading 				= array();
-			// $reading['Humidity'] 	= $_POST['humidity'];
-			// $reading['SST']	 		= $_POST['sst'];
-			// $reading['AirPressure'] = $_POST['air-pressure'];
-			// $reading['WindSpeed'] 	= $_POST['wind-speed'];
-			// $reading['LapseRate']	= $_POST['lapse-rate'];
-
-			return $this->saveReading($_POST);
+			$this->saveReading($_POST);
 		}
-
-		$response = new VrijResponse();
 
 	}
 
@@ -96,8 +90,19 @@ class Vrijeme {
 	 */
 	public function saveReading($reading)
 	{
-		return system( Vrijeme::cmd("iSaveReading([".$reading['Humidity'].",".$reading['SST'].",".
-			$reading['AirPressure'].",".$reading['WindSpeed'].",".$reading['LapseRate']."])") );
+		$memfile = exec( Vrijeme::cmd("memFile") );
+		$reading = "[".$reading['Humidity'].",".$reading['SST'].",".
+			$reading['AirPressure'].",".$reading['WindSpeed'].",".$reading['LapseRate']."]\n";
+		$this->response->success = (exec( Vrijeme::cmd("iSaveReading(".$reading.")") ) 
+			|| file_put_contents($memfile, $reading, FILE_APPEND | LOCK_EX));
+		if ($this->response->success)
+		{
+			$this->response->message = "Reading was successfully added!";
+			$this->response->fMessage = "<span class=\"success\">".$this->response->message."</span>";
+		} else {
+			$this->response->fMessage = "<span class=\"error\">".$this->response->message."</span>";
+		}
+		return json_encode($this->response);
 	}
 
 	/**
@@ -137,8 +142,9 @@ class Vrijeme {
  *	App response class.
  */
 class VrijResponse {
-	public $success;
-	public $message;
+	public $success 	= false;
+	public $message 	= "Could not add reading.";
+	public $fMessage 	= null;
 }
 
 # Init

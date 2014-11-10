@@ -12,7 +12,7 @@
 	<body>
 		<section id="slate">
 			<header id="header">
-				<h1 class="appname">Vrijeme</h1>
+				<h1 class="appname"><a href="">Vrijeme</a></h1>
 				<h2 class="tagline">Weather prediction in Prolog!</h2>
 			</header>
 			<main id="main">

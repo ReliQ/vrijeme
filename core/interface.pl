@@ -25,14 +25,15 @@ memFile:-
 % List current readings.
 current:-
 	loadReadings(X),
-	write(X).
+	revl(X,Y),
+	write(Y).
 
 
 % Get readable prediction.
 predict:-
 	loadReadings(X),
 	length(X, Len),
-	( Len >= 3 -> prediction, write('Not available.')).
+	( Len >= 3 -> prediction; write('Not available.')).
 
 
 % Save reading interface.

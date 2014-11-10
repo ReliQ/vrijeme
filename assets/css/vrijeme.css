@@ -1,5 +1,7 @@
-/*
- *	Vrijeme
+/**
+ *	Vrijeme CSS
+ *	@author:	Patrick Reid - @IAmReliQ
+ * 	@link:		www.reliqarts.com
  */
 
 
@@ -10,6 +12,7 @@ html, body {background: lavender; font-family: Sans-Serif; font-size: 16px;}
 #slate > #header {background: #5264AE; box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.26); color: #fff; min-height: 10px;}
 	#slate > #header {background: #5264AE; color: #fff; min-height: 10px; padding: 10px 5px;}
 	#slate > #header h1 {font-size: 2rem; margin: 0;}
+		#slate > #header h1 a {color: inherit; text-decoration: none;}
 	#slate > #header h2 {font-size: 1rem; margin: 0; font-weight: normal;}
 
 #slate > #main {padding: 15px 10px;}
@@ -37,8 +40,12 @@ html, body {background: lavender; font-family: Sans-Serif; font-size: 16px;}
 		#slate > #main .asplit .i-s{background: rgba(233, 233, 235, 1); margin-left: 2%; width: 38%;}
 			#slate > #main .asplit .i-s form {margin-bottom: 2px;}
 			#slate > #main .asplit .i-s .in {}
-		#slate > #main .asplit .p-s{background: rgba(82, 100, 174, .8) url('../img/wth-bg.png') center bottom no-repeat; width: 60%;}
-			#slate > #main .asplit .p-s p {color: #fff; font-size: 1.2rem; font-weight: bold; padding: 20px 10px; text-align: center}
+			#slate > #main .asplit .i-s .info {display: block; font-size: .8rem; font-weight: bold; padding: 5px;}
+			#slate > #main .asplit .i-s .info .error {color: #ae0001;}
+			#slate > #main .asplit .i-s .info .success {color: #01ae01;}
+		#slate > #main .asplit .p-s{background: rgba(82, 100, 174, .8) url('../img/wth-bg.png') center bottom no-repeat; box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1); overflow: auto; width: 60%;}
+			#slate > #main .asplit .p-s p { color: #fff; font-size: 1.2rem; font-weight: bold; line-height: 1.2; padding: 20px 4px; text-align: center}
+			#slate > #main .asplit .p-s pre {overflow: visible;}
 	#slate > #main .asplit:after {content: ""; clear: both; display: block; float: none;}
 	#slate > #main .tail {border-top: 1px dashed rgba(239, 239, 239, 0.8); margin-top: 15px; padding: 10px 0;}
 		#slate > #main .tail a.action-btn {background: rgba(239, 239, 239, 0.8); border: 1px solid transparent; border-bottom-color: rgba(82, 100, 174, 0.27); color: #115; display: inline-block; font-size: .8rem; padding: 5px; text-decoration: none;}

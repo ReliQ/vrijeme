@@ -3,16 +3,13 @@
 <section class="asplit">
 	<div class="p-s">
 		<h3>Current Prediction</h3>
-		<p> <!-- Prediction goes here... -->
-		<?php 
-			$app->test(); 
-		?>
-		</p>
+			<p><!-- Prediction goes here... -->
+			<?php //$app->test(); ?> </p>
 	</div>
 	<div class="i-s">
 		<h3>New Reading</h3>
 		<p class="instructions">To record a new reading please provide the details requested below in the specified units.</p>
-		<aside class="errors"></aside>
+		<aside class="info"><?php echo $app->response->fMessage; ?></aside>
 		<form id="new-reading" method="post">
 			<fieldset class="fields">
 				<div class="field">

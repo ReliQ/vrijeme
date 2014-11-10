@@ -7,9 +7,9 @@ prediction:-
             getLines(Lines),
             revl([D1,D2,D3|T],Lines),
             conditions(D1,D2,D3,Level),
-            write('conditions: '), write(Level), nl,
+            %write('conditions: '), write(Level), nl,
             wind_cat(D1,WeatherStatus),                  %testing for storms based on the wind speed
-            write('weather status: '), write(WeatherStatus),nl,
+            %write('weather status: '), write(WeatherStatus),nl,
             warning(WeatherStatus),nl,
             displayPrediction(Level),nl,
             displayConditions(D1,D2,D3).
@@ -58,11 +58,11 @@ displayConditions([H1,T1,P1,S1,M1], [H2,T2,P2,S2,M2], [H3,T3,P3,S3,M3]):-
 %displays prediction of whether the weather is improving, stable, deteriorating or mixed
 displayPrediction(Level):-
      Level==0
-             ->write('\tBased on the analysis, stable weather is predicted'),nl;
+             ->write('\tBased on the analysis, stable weather is predicted.'),nl;
      Level==1
-             ->write('\tBased on the analysis, Weather conditions are expected to improve'),nl;
+             ->write('\tBased on the analysis, Weather conditions are expected to improve.'),nl;
      Level==2
-             ->write('\tBased on the analysis, Wether conditions are expected to continue deteriorating'),nl;
+             ->write('\tBased on the analysis, Wether conditions are expected to continue deteriorating.'),nl;
      Level==3
              ->write('\tMixed weather conditions (see below)'),nl;true.
 

@@ -56,3 +56,4 @@ warning(WeatherStatus):-
                      write('\t\tIf the house shows signs of breaking up, stay under a table or stand in a sturdy closet'),nl,
                      write('\t\tListen to the radio for information on what is happening.'),nl,
                      write('\tEnsure your hurricane survival kit is properly stocked and readily accessible'),nl.
+

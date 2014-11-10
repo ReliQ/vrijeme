@@ -3,7 +3,11 @@
 <section class="asplit">
 	<div class="p-s">
 		<h3>Current Prediction</h3>
-		<p>Prediction goes here...</p>
+		<p> <!-- Prediction goes here... -->
+		<?php 
+			$app->test(); 
+		?>
+		</p>
 	</div>
 	<div class="i-s">
 		<h3>New Reading</h3>

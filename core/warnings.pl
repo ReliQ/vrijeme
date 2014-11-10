@@ -55,12 +55,5 @@ warning(WeatherStatus):-
                      write('\t\tBe prepared for materials to fall from the ceiling'),nl,
                      write('\t\tIf the house shows signs of breaking up, stay under a table or stand in a sturdy closet'),nl,
                      write('\t\tListen to the radio for information on what is happening.'),nl,
-                     write('\tEnsure your hurricane survival kit is properly stocked and readily accessible'),nl,
-     Level==0
-             ->write('Based on the analysis, stable weather is predicted'),
-     Level==1
-             ->write('Based on the analysis, Weather conditions are expected to improve'),
-     Level==2
-             ->write('Based on the analysis, Wether conditions are expected to continue deteriorating'),
-     Level==3
-             ->('Mixed weather conditions (see below)').
+                     write('\tEnsure your hurricane survival kit is properly stocked and readily accessible'),nl.
+

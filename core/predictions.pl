@@ -17,7 +17,10 @@ prediction:-
             %conditions([H1,T1,P1,S1,M1], [H2,T2,P2,S2,M2], [H3,T3,P3,S3,M3], Level),
             write('conditions: '), write(Level), nl,
             wind_cat(D1,WeatherStatus),                  %testing for storms based on the wind speed
-            write('weather status: '), write(WeatherStatus),nl. %stormExists 1= there is a storm 0 = there is no storm
+            write('weather status: '), write(WeatherStatus),nl,
+            warning(WeatherStatus),nl,
+            displayPrediction(Level),nl,
+            displayConditions(D1,D2,D3). %stormExists 1= there is a storm 0 = there is no storm
             %(WeatherStatus =:= -1)->StormExists is 0; StormExists is 1,
             %write('Storm exists?: '), write(StormExists).
              
@@ -37,6 +40,7 @@ displayConditions([H1,T1,P1,S1,M1], [H2,T2,P2,S2,M2], [H3,T3,P3,S3,M3]):-
                _PressureChange is (P1-P2)+(P2-P3),         % 2 = deteriorating weather (raising temp, speed, etc)
                SpeedChange is (S1-S2)+(S2-S3),
                MoistTempChange is (M1-M2)+(M2-M3),
+               write('WEATHER CONDITIONS (LAST 3 DAYS)'),nl,
                write('Today'),nl,
                write('\tPressure: '),write(P1),
                write('\tSea Surface Temperature: '),write(T1),
@@ -59,7 +63,15 @@ displayConditions([H1,T1,P1,S1,M1], [H2,T2,P2,S2,M2], [H3,T3,P3,S3,M3]):-
                write('\tAtmospheric Convection: '),write(M3),
                write('\tPressure: '),write(P3).
                
-               
+displayPrediction(Level):-
+     Level==0
+             ->write('\tBased on the analysis, stable weather is predicted'),nl;
+     Level==1
+             ->write('\tBased on the analysis, Weather conditions are expected to improve'),nl;
+     Level==2
+             ->write('\tBased on the analysis, Wether conditions are expected to continue deteriorating'),nl;
+     Level==3
+             ->write('\tMixed weather conditions (see below)'),nl;true.
 
 getLines(L):-
    memory_file(X),

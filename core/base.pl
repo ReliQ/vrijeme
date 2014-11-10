@@ -50,25 +50,26 @@ thunderstorm(Condensation,Status):-
 % wind_cat/3 - wind prediction
 % Get hurricane category prediction based on wind speed only.
 % Windspeed in mph
-wind_cat(WindSpeed, Category, Unit):-
+wind_cat([_,_,_,S1,_], Category, Unit):-
     member(Unit, [kmh,mph]),
-    ( (Unit == kmh -> wind_cat((WindSpeed*0.621371), Category, mph) );      %-- unit conversion
-    WindSpeed < 39                          %-- Normal
+    ( (Unit == kmh -> wind_cat((S1*0.621371), Category, mph) );      %-- unit conversion
+    S1 < 39                          %-- Normal
         -> Category is -1;
-    between(39, 73, WindSpeed)              %-- Tropical Storm
+    between(39, 73, S1)              %-- Tropical Storm
         -> Category is 0;                       
-    between(74, 95, WindSpeed)              %-- Tropical Cyclone/Hurricane
+    between(74, 95, S1)              %-- Tropical Cyclone/Hurricane
         -> Category is 1;
-    between(96, 110, WindSpeed)     
+    between(96, 110, S1)
         -> Category is 2;
-    between(111, 130, WindSpeed) 
+    between(111, 130, S1)
         -> Category is 3;
-    between(131, 155, WindSpeed) 
+    between(131, 155, S1)
         -> Category is 4;
-    WindSpeed > 155
+    S1 > 155
         -> Category is 5 ).
 % wind_cat/2 - No-unit shorthand: wind prediction
 wind_cat(WindSpeed, Category):- wind_cat(WindSpeed, Category, mph).
+wind_cat([H1,T1,P1,S1,M1],Category):- wind_cat([H1,T1,P1,S1,M1],Category,mph).
 
 
 

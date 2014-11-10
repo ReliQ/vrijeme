@@ -9,7 +9,7 @@ run:-
     write(WelcomeMessage), nl, write('Select Option:'), nl,
     write('1. Information Input'), nl, write('2. View current data'), nl,
     write('3. Get latest Prediction'), nl, write('4. Exit'), nl,
-    write('-| Choice: '), read(Choice), doOption(Choice).
+    write('-| Choice: '), read(Choice), doOption(Choice), nl, run.
       
       
 doOption(Choice):-
